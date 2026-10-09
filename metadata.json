@@ -1,0 +1,7 @@
+{
+  "name": "Futebol Play TV - Streaming VisionOS",
+  "description": "App de streaming esportivo de futebol com interface visionOS translúcida, transmissões ao vivo, próximos jogos em cartões 3D de vidro e páginas oficiais dos clubes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

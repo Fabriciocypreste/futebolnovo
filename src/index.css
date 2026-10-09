@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+/* visionOS Spatial Glass Styling */
+.vision-glass {
+  background: rgba(6, 20, 14, 0.55);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.vision-glass-panel {
+  background: rgba(4, 18, 12, 0.62);
+  backdrop-filter: blur(36px) saturate(210%);
+  -webkit-backdrop-filter: blur(36px) saturate(210%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 
+    0 35px 85px rgba(0, 0, 0, 0.65),
+    inset 0 1px 1px rgba(255, 255, 255, 0.28);
+}
+
+/* visionOS 3D Transparent Spatial Glass Card */
+.vision-3d-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(6, 26, 17, 0.48);
+  backdrop-filter: blur(28px) saturate(220%);
+  -webkit-backdrop-filter: blur(28px) saturate(220%);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  box-shadow: 
+    0 25px 60px -10px rgba(0, 0, 0, 0.6),
+    0 10px 20px -5px rgba(0, 0, 0, 0.4),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+  transform-style: preserve-3d;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vision-3d-glass:hover,
+.vision-3d-glass:focus-visible {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.04) 100%), rgba(10, 36, 24, 0.65);
+  border-color: rgba(255, 255, 255, 0.38);
+  box-shadow: 
+    0 35px 80px -15px rgba(0, 0, 0, 0.75),
+    0 15px 30px -5px rgba(16, 185, 129, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px) scale(1.015);
+}
+
+/* Glass pedestal for 3D team crests */
+.pedestal-3d {
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.02) 70%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 
+    0 12px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.vision-3d-glass:hover .pedestal-3d {
+  border-color: rgba(52, 211, 153, 0.45);
+  box-shadow: 
+    0 16px 32px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(16, 185, 129, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px) scale(1.05);
+}
+
+
+.vision-specular {
+  position: relative;
+}
+
+.vision-specular::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  pointer-events: none;
+}
+
+/* Custom scrollbars for spatial visionOS feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
