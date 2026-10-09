@@ -112,8 +112,8 @@ export const MatchCard: React.FC<MatchCardProps> = ({
       {/* TOP HEADER: Competition, Round & Kickoff Status */}
       <div className="flex items-center justify-between text-xs text-slate-300 mb-5 relative z-10">
         <div className="flex items-center gap-2">
-          <span className="font-extrabold text-white text-xs tracking-wide">
-            {match.campeonato || 'Brasileirão Série A'}
+          <span className="font-black text-white text-xs uppercase tracking-wider">
+            {(match.campeonato || 'Brasileirão Série A').toUpperCase()}
           </span>
           {match.rodada && (
             <>

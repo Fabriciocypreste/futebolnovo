@@ -33,7 +33,7 @@ export const FlaFluHeroBanner: React.FC<FlaFluHeroBannerProps> = ({
     placarVisitante: null,
     status: 'agendado',
     estadio: 'Estádio do Maracanã · Rio de Janeiro',
-    campeonato: 'Brasileirão Série A · O Clássico das Multidões',
+    campeonato: 'BRASILEIRÃO SÉRIE A · O CLÁSSICO DAS MULTIDÕES',
     rodada: 'Rodada 30',
     data: 'Hoje',
     horario: '21:00',
@@ -66,9 +66,9 @@ export const FlaFluHeroBanner: React.FC<FlaFluHeroBannerProps> = ({
               <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
               GRANDE CLÁSSICO EM DESTAQUE
             </span>
-            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-slate-200 text-xs font-semibold">
+            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-slate-200 text-xs font-black uppercase tracking-wider">
               <Flame className="w-3.5 h-3.5 text-amber-400" />
-              <span>O Clássico das Multidões · Fla-Flu</span>
+              <span>BRASILEIRÃO SÉRIE A · FLA-FLU</span>
             </span>
           </div>
 

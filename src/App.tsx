@@ -25,16 +25,13 @@ import { EpgGuide } from './components/EpgGuide';
 import { FlaFluHeroBanner } from './components/FlaFluHeroBanner';
 import { BrasileiraoClubsStrip } from './components/BrasileiraoClubsStrip';
 import { TeamCustomPage } from './components/TeamCustomPage';
-import { Search, Radio, Trophy, Users, Tv, Calendar, Play, Signal, RefreshCw } from 'lucide-react';
+import { Radio, Trophy, Users, Tv, Calendar, Play, Signal, RefreshCw } from 'lucide-react';
 
 export default function App() {
   // Navigation tab state
   const [activeTab, setActiveTab] = useState<NavTab>('jogos');
   const [selectedLeague, setSelectedLeague] = useState<string>('bra.1');
   const [viewingTeamSlug, setViewingTeamSlug] = useState<string | null>(null);
-
-  // Search query
-  const [searchQuery, setSearchQuery] = useState<string>('');
 
   // Data states
   const [matches, setMatches] = useState<Match[]>([]);
@@ -153,7 +150,7 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Filtered Matches based on search & filter
+  // Filtered Matches based on filter
   const filteredMatches = useMemo(() => {
     let list = [...matches];
 
@@ -163,30 +160,13 @@ export default function App() {
       list = list.filter((m) => m.status === 'encerrado' || m.status === 'finished');
     }
 
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      list = list.filter((m) => {
-        const home = helperGetTeamName(m.mandante).toLowerCase();
-        const away = helperGetTeamName(m.visitante).toLowerCase();
-        const estadio = (m.estadio || '').toLowerCase();
-        return home.includes(q) || away.includes(q) || estadio.includes(q);
-      });
-    }
-
     return list;
-  }, [matches, matchFilter, searchQuery]);
+  }, [matches, matchFilter]);
 
   // Filtered Teams for the Clubs Tab
   const filteredTeams = useMemo(() => {
-    if (!searchQuery.trim()) return teams;
-    const q = searchQuery.toLowerCase();
-    return teams.filter(
-      (t) =>
-        t.nome.toLowerCase().includes(q) ||
-        (t.cidade && t.cidade.toLowerCase().includes(q)) ||
-        (t.estadio && t.estadio.toLowerCase().includes(q))
-    );
-  }, [teams, searchQuery]);
+    return teams;
+  }, [teams]);
 
   // Featured Spotlight Match
   const spotlightMatch = useMemo(() => {
@@ -245,56 +225,39 @@ export default function App() {
                 liveMatchCount={liveCount}
               />
 
-              {/* TV Remote-Friendly Competition Filter Pills & Search Bar */}
+              {/* Remote-Friendly Competition Filter (Sem campo de busca) */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-                <div className="flex items-center gap-2.5 overflow-x-auto pb-1 scrollbar-none">
-                  <span className="text-xs text-slate-400 mr-1 shrink-0 font-medium">Competição:</span>
+                <div className="flex items-center gap-2.5 overflow-x-auto pb-1 scrollbar-none w-full">
+                  <span className="text-xs text-slate-400 mr-1 shrink-0 font-extrabold uppercase tracking-wider">
+                    COMPETIÇÕES:
+                  </span>
                   {POPULAR_LEAGUES.map((league) => (
                     <button
                       key={league.code}
                       onClick={() => setSelectedLeague(league.code)}
-                      className={`px-4 py-2 rounded-2xl text-xs font-semibold whitespace-nowrap shrink-0 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
+                      className={`px-4 py-2 rounded-2xl text-xs font-black uppercase tracking-wider whitespace-nowrap shrink-0 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
                         selectedLeague === league.code
-                          ? 'bg-emerald-400 text-slate-950 font-bold shadow-lg shadow-emerald-400/25 scale-[1.03]'
+                          ? 'bg-emerald-400 text-slate-950 font-black shadow-lg shadow-emerald-400/25 scale-[1.03]'
                           : 'bg-white/[0.06] hover:bg-white/[0.12] text-slate-300 border border-white/15'
                       }`}
                     >
-                      {league.name}
+                      {league.name.toUpperCase()}
                     </button>
                   ))}
-                </div>
 
-                {/* Quick Search & Reload Bar */}
-                <div className="flex items-center gap-2.5 shrink-0">
-                  <div className="relative w-full sm:w-64">
-                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <input
-                      type="text"
-                      placeholder="Buscar partida ou canal…"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white/[0.07] hover:bg-white/[0.12] focus:bg-white/[0.15] border border-white/20 focus:border-emerald-400 text-xs text-white placeholder-slate-400 outline-none transition-all shadow-inner"
-                    />
-                    {searchQuery && (
-                      <button
-                        onClick={() => setSearchQuery('')}
-                        className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-white"
-                      >
-                        ✕
-                      </button>
-                    )}
+                  <div className="ml-auto shrink-0 pl-2">
+                    <button
+                      onClick={loadData}
+                      disabled={isRefreshing}
+                      className="px-3.5 py-2 rounded-2xl bg-white/[0.07] hover:bg-white/[0.12] border border-white/20 text-slate-300 hover:text-white transition-all disabled:opacity-50 flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                      title="Atualizar Transmissões"
+                    >
+                      <RefreshCw
+                        className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin text-emerald-400' : ''}`}
+                      />
+                      <span className="text-xs font-bold uppercase tracking-wider hidden sm:inline">Atualizar</span>
+                    </button>
                   </div>
-
-                  <button
-                    onClick={loadData}
-                    disabled={isRefreshing}
-                    className="p-2.5 rounded-2xl bg-white/[0.07] hover:bg-white/[0.12] border border-white/20 text-slate-300 hover:text-white transition-all disabled:opacity-50"
-                    title="Atualizar Transmissões"
-                  >
-                    <RefreshCw
-                      className={`w-4 h-4 ${isRefreshing ? 'animate-spin text-emerald-400' : ''}`}
-                    />
-                  </button>
                 </div>
               </div>
             </div>

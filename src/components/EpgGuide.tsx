@@ -99,8 +99,8 @@ export const EpgGuide: React.FC<EpgGuideProps> = ({
                   <div>
                     {/* Top match header */}
                     <div className="flex items-center justify-between text-xs text-slate-300 mb-4">
-                      <span className="font-extrabold text-white tracking-wide">
-                        {m.campeonato || 'Brasileirão'}
+                      <span className="font-black text-white tracking-wider uppercase text-xs">
+                        {(m.campeonato || 'Brasileirão').toUpperCase()}
                       </span>
                       <span className="font-mono tabular-nums text-emerald-300 font-bold bg-black/40 px-3 py-1 rounded-xl border border-white/10">
                         {m.data} · {m.horario}

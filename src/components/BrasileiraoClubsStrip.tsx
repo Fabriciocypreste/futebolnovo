@@ -10,7 +10,7 @@ interface BrasileiraoClubsStripProps {
 }
 
 // Canonical 20 Serie A clubs with verified high-res ESPN crests and official primary colors
-const CANONICAL_20_CLUBS = [
+export const CANONICAL_20_CLUBS = [
   { slug: 'flamengo', nome: 'Flamengo', apelido: 'CRF', escudo: 'https://a.espncdn.com/i/teamlogos/soccer/500/819.png', cor: '#c4122d' },
   { slug: 'palmeiras', nome: 'Palmeiras', apelido: 'SEP', escudo: 'https://a.espncdn.com/i/teamlogos/soccer/500/2029.png', cor: '#006437' },
   { slug: 'corinthians', nome: 'Corinthians', apelido: 'SCCP', escudo: 'https://a.espncdn.com/i/teamlogos/soccer/500/874.png', cor: '#ffffff' },

@@ -38,9 +38,9 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({
       {/* Table Header Details */}
       <div className="px-6 py-4 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-white/[0.02]">
         <div>
-          <h2 className="text-base font-bold text-white flex items-center gap-2">
+          <h2 className="text-base font-black text-white flex items-center gap-2 uppercase tracking-wide">
             <Trophy className="w-4 h-4 text-emerald-400" />
-            <span>Tabela Geral · {leagueName}</span>
+            <span>TABELA GERAL · {leagueName.toUpperCase()}</span>
           </h2>
           <p className="text-xs text-slate-400 mt-0.5">
             Classificação oficial atualizada · Temporada 2026

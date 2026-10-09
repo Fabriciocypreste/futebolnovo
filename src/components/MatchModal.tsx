@@ -36,8 +36,8 @@ export const MatchModal: React.FC<MatchModalProps> = ({ match, onClose, onSelect
         {/* Header with Title & Close button */}
         <div className="flex items-center justify-between pb-4 border-b border-white/10">
           <div>
-            <span className="text-xs uppercase tracking-wider text-emerald-400 font-bold">
-              {match.campeonato || 'Brasileirão Série A'}
+            <span className="text-xs uppercase tracking-wider text-emerald-400 font-extrabold">
+              {(match.campeonato || 'Brasileirão Série A').toUpperCase()}
             </span>
             <h2 className="text-lg font-extrabold text-white mt-0.5">
               {homeName} vs {awayName}

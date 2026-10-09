@@ -4,12 +4,12 @@ const API_BASE = 'https://apifutebol.chemorena.com';
 
 // Common featured leagues
 export const POPULAR_LEAGUES: { id: string; code: string; name: string; country: string }[] = [
-  { id: 'bra.1', code: 'bra.1', name: 'Brasileirão Série A', country: 'Brasil' },
-  { id: 'bra.2', code: 'bra.2', name: 'Brasileirão Série B', country: 'Brasil' },
-  { id: 'conmebol.libertadores', code: 'conmebol.libertadores', name: 'CONMEBOL Libertadores', country: 'América do Sul' },
-  { id: 'conmebol.sudamericana', code: 'conmebol.sudamericana', name: 'CONMEBOL Sudamericana', country: 'América do Sul' },
-  { id: 'uefa.champions', code: 'uefa.champions', name: 'UEFA Champions League', country: 'Europa' },
-  { id: 'eng.1', code: 'eng.1', name: 'Premier League', country: 'Inglaterra' },
+  { id: 'bra.1', code: 'bra.1', name: 'BRASILEIRÃO SÉRIE A', country: 'Brasil' },
+  { id: 'bra.2', code: 'bra.2', name: 'BRASILEIRÃO SÉRIE B', country: 'Brasil' },
+  { id: 'conmebol.libertadores', code: 'conmebol.libertadores', name: 'CONMEBOL LIBERTADORES', country: 'América do Sul' },
+  { id: 'conmebol.sudamericana', code: 'conmebol.sudamericana', name: 'CONMEBOL SUDAMERICANA', country: 'América do Sul' },
+  { id: 'uefa.champions', code: 'uefa.champions', name: 'UEFA CHAMPIONS LEAGUE', country: 'Europa' },
+  { id: 'eng.1', code: 'eng.1', name: 'PREMIER LEAGUE', country: 'Inglaterra' },
   { id: 'esp.1', code: 'esp.1', name: 'LALIGA', country: 'Espanha' },
 ];
 
